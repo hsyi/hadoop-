@@ -10,6 +10,7 @@ while read line || [ -n "$line" ];do
     eval "$line"
 done < config
 cd $hadoop-test-dir
+echo $hadoop-test-dir
 echo"开始极小文件测试！"
 echo "-----------------------------------------------------------------------"
 echo "读写10000个10B的文件"
