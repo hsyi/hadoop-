@@ -9,7 +9,7 @@ cur_dir ＝ $(pwd)
 while read line || [ -n "$line" ];do
     eval "$line"
 done < config
-cd hadoop-test-dir
+cd $hadoop-test-dir
 echo"开始极小文件测试！"
 echo "-----------------------------------------------------------------------"
 echo "读写10000个10B的文件"
@@ -21,3 +21,5 @@ echo "-----------------------------------------------------------------------"
 echo "读写5个100G的文件"
 hadoop jar $jar_path $main_class -write -nrFiles 5 -size "100GB"
 hadoop jar $jar_path $main_class -read -nrFiles 5 -size "100GB"
+
+cd $cur_dir
