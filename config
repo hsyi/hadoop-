@@ -1,1 +1,1 @@
-hadoop_test_dir=/cluster/hadoop/share/hadoop/hdfs
+hadoop_test_dir=/cluster/hadoop/share/hadoop/mapreduce

@@ -1,5 +1,5 @@
 #!bin/bash
-jar_path=hadoop-hdfs-2.7.3-tests.jar
+jar_path=hadoop-mapreduce-client-jobclient-2.7.3-tests.jar
 main_class=TestDFSIO
 echo "-----------------------------------------------------------------------"
 echo "---------------------------开始Hadoop 集群测试---------------------------"
