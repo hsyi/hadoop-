@@ -5,13 +5,13 @@ echo "-----------------------------------------------------------------------"
 echo "---------------------------开始Hadoop 集群测试---------------------------"
 echo "-----------------------------------------------------------------------"
 echo "清空测试目录！"
-cur_dir ＝ $(pwd)
+cur_dir＝$(pwd)
 while read line || [ -n "$line" ];do
     eval "$line"
 done < config
 cd $hadoop_test_dir
 echo $hadoop_test_dir
-echo"开始极小文件测试！"
+echo "开始极小文件测试！"
 echo "-----------------------------------------------------------------------"
 echo "读写10000个10B的文件"
 hadoop jar $jar_path $main_class -write -nrFiles 1000 -size "10B"
