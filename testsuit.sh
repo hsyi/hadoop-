@@ -27,13 +27,14 @@ linenum=0
 avtimesec=0
 num_testdfsio=0
 while read line || [ -n "$line" ];do
-    if [ $(($linenum % 9 )) -eq 8 ];then
-        tmp= $(echo $line | awk -F: '{print $2}')
-        let avtimesec=avtimesec+tmp
+    if [ $(($linenum % 9 )) -eq 7 ];then
+        tmp=$(echo $line |awk -F: '{print $2}')
+	echo $tmp
+       	avtimesec=$(echo "$avtimesec + $tmp" |bc)
         let num_testdfsio=num_testdfsio+1
     fi
     let linenum=linenum+1
 done < TestDFSIO_results.log
-let avtimesec=avtimesec/num_testdfsio
+avtimesec=$(echo "$avtimesec / $num_testdfsio" |bc)
 echo "平均执行时间：$avtimesec"
 cd $cur_dir
