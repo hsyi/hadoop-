@@ -28,7 +28,7 @@ avtimesec=0
 num_testdfsio=0
 while read line || [ -n "$line" ];do
     if [ $(($linenum % 9 )) -eq 8 ];then
-        $tmp=$(echo $line | awk -F, '{print $2}')
+        $tmp=$(echo $line | awk -F: '{print $2}')
         let avtimesec=avtimesec+tmp
         let num_testdfsio=num_testdfsio+1
     fi
