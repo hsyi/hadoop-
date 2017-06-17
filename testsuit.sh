@@ -10,7 +10,7 @@ while read line || [ -n "$line" ];do
     eval "$line"
 done < config
 cd $hadoop_test_dir
-echo $hadoop_test_dir
+# echo $hadoop_test_dir
 rm TestDFSIO_results.log
 echo "开始极小文件测试！"
 echo "-----------------------------------------------------------------------"
