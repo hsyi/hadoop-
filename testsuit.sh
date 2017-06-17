@@ -11,6 +11,7 @@ while read line || [ -n "$line" ];do
 done < config
 cd $hadoop_test_dir
 echo $hadoop_test_dir
+rm TestDFSIO_results.log
 echo "开始极小文件测试！"
 echo "-----------------------------------------------------------------------"
 echo "读写10000个10B的文件"
@@ -19,8 +20,21 @@ hadoop jar $jar_path $main_class -read -nrFiles 1000 -size "10B"
 hadoop jar $jar_path $main_class -clean
 echo "开始巨文件测试!"
 echo "-----------------------------------------------------------------------"
-echo "读写5个100G的文件"
-hadoop jar $jar_path $main_class -write -nrFiles 5 -size "100GB"
-hadoop jar $jar_path $main_class -read -nrFiles 5 -size "100GB"
-
+echo "读写5个1G的文件"
+hadoop jar $jar_path $main_class -write -nrFiles 5 -size "1GB"
+hadoop jar $jar_path $main_class -read -nrFiles 5 -size "1GB"
+linenum=0
+avtimesec=0
+num_testdfsio=0
+while read line || [ -n "$line" ];do
+    if ($(linenum%9)==0)
+        $tmp=$(echo $line | awk -F, '{print $2}')
+        let avtimesec=avtimesec+tmp
+        let num_testdfsio=num_testdfsio+1
+    then
+    fi
+    (++linenum);
+done < TestDFSIO_results.log
+let avtimesec=avtimesec/num_testdfsio
+echo "平均执行时间：$avtimesec"
 cd $cur_dir
